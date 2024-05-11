@@ -43,6 +43,9 @@ animations = [{
 [node name="Ranged_Weapon" type="Area2D"]
 script = ExtResource("1_mnrht")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 3)
 rotation = -3.14159
@@ -59,3 +62,5 @@ collision_mask = 5
 rotation = 1.5708
 target_position = Vector2(9.57279e-06, 219)
 collision_mask = 5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

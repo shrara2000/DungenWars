@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtxpemjh2p05v"]
+[gd_scene load_steps=12 format=3 uid="uid://dtxpemjh2p05v"]
 
 [ext_resource type="Texture2D" uid="uid://dqb1xksd665ea" path="res://Assets/sprites/slime_green.png" id="1_4cb4m"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_bwfeu"]
@@ -23,6 +23,10 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("1_4cb4m")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ay46"]
+atlas = ExtResource("1_4cb4m")
+region = Rect2(48, 48, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qm1bu"]
 animations = [{
 "frames": [{
@@ -41,6 +45,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ay46")
+}],
+"loop": true,
+"name": &"die",
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jot8x"]
@@ -56,20 +68,17 @@ shape = SubResource("RectangleShape2D_rgdj2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qm1bu")
+animation = &"die"
 autoplay = "default"
-frame = 2
-frame_progress = 0.696527
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, 4)
 rotation = -1.56857
-scale = Vector2(1, 1)
 target_position = Vector2(0.0200582, 8.99998)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 4)
 rotation = -1.56857
-scale = Vector2(1, 1)
 target_position = Vector2(-0.0178294, -7.99998)
 
 [node name="KillZone" parent="." instance=ExtResource("2_vnm5s")]

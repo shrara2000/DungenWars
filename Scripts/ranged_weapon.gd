@@ -2,6 +2,9 @@ extends Area2D
 @onready var ray_cast_right = $RayCast2DRight
 @onready var ray_cast_left = $RayCast2DLeft
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var timer = $Timer
+
+var Ecollider;
 var current_direction;
 var tracked_ray;
 var isEquipped=false;
@@ -30,11 +33,19 @@ func _process(delta):
 		tracked_ray=ray_cast_left
 		
 	var collider=tracked_ray.get_collider();
-	if (collider and (Input.is_action_pressed("Attack") or Input.is_action_just_pressed("Attack")) and collider is CharacterBody2D):
-			collider.queue_free();
+	if (collider and (  Input.is_action_just_pressed("Attack")) and collider is CharacterBody2D):
+			collider.get_node("AnimatedSprite2D").play("die");
+			Ecollider=collider
+			collider.get_node("CollisionShape2D").queue_free()
+			collider.SPEED=30;
+			timer.start()
 			print("Enemy Killed")
 			
 			
+func _on_timer_timeout():
+	
+		Ecollider.queue_free();
+	
 	
 		
 	
