@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://c41g0ftqq178y"]
+
+[ext_resource type="Texture2D" uid="uid://b3tgyy2wnlxk8" path="res://Assets/sprites/Avy_s_MV_Stuff-removebg-preview.png" id="1_60s2t"]
+[ext_resource type="Script" path="res://ranged_weapon.gd" id="1_mnrht"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv854"]
+atlas = ExtResource("1_60s2t")
+region = Rect2(288, 320, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qw1q"]
+atlas = ExtResource("1_60s2t")
+region = Rect2(384, 320, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5yj1"]
+atlas = ExtResource("1_60s2t")
+region = Rect2(480, 320, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qqsi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv854")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qw1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5yj1")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv854")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Ranged_Weapon" type="Area2D"]
+script = ExtResource("1_mnrht")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 3)
+rotation = -3.14159
+scale = Vector2(0.311376, 0.438709)
+sprite_frames = SubResource("SpriteFrames_1qqsi")
+animation = &"Idle"
+
+[node name="RayCast2DRight" type="RayCast2D" parent="."]
+target_position = Vector2(236, 0)
+collision_mask = 5
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="."]
+rotation = 1.5708
+target_position = Vector2(9.57279e-06, 219)
+collision_mask = 5

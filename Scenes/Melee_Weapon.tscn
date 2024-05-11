@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctfvrkn3gwjoo"]
+
+[ext_resource type="Script" path="res://Scripts/Melee_Weapon.gd" id="1_3r8jc"]
+[ext_resource type="Texture2D" uid="uid://b3tgyy2wnlxk8" path="res://Assets/sprites/Avy_s_MV_Stuff-removebg-preview.png" id="1_gdcuf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsdco"]
+atlas = ExtResource("1_gdcuf")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdty0"]
+atlas = ExtResource("1_gdcuf")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue6lr"]
+atlas = ExtResource("1_gdcuf")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qcew"]
+atlas = ExtResource("1_gdcuf")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl3xk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsdco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdty0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue6lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdty0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsdco")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qcew")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_emrfx"]
+radius = 9.0
+
+[node name="Melee Weapon" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_3r8jc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -7)
+scale = Vector2(0.405759, 0.455661)
+sprite_frames = SubResource("SpriteFrames_nl3xk")
+animation = &"attack"
+frame_progress = 0.438677
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -3)
+rotation = 2.61366
+scale = Vector2(1.27152, -1.28991)
+shape = SubResource("CircleShape2D_emrfx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
