@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c41g0ftqq178y"]
 
 [ext_resource type="Texture2D" uid="uid://b3tgyy2wnlxk8" path="res://Assets/sprites/Avy_s_MV_Stuff-removebg-preview.png" id="1_60s2t"]
-[ext_resource type="Script" path="res://ranged_weapon.gd" id="1_mnrht"]
+[ext_resource type="Script" path="res://Scripts/ranged_weapon.gd" id="1_mnrht"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bv854"]
 atlas = ExtResource("1_60s2t")
